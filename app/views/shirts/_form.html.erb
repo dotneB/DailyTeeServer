@@ -1,0 +1,33 @@
+<%= form_for(@shirt) do |f| %>
+  <% if @shirt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shirt.errors.count, "error") %> prohibited this shirt from being saved:</h2>
+
+      <ul>
+      <% @shirt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :image_url %><br>
+    <%= f.text_field :image_url %>
+  </div>
+  <div class="field">
+    <%= f.label :site_id %><br>
+    <%= f.collection_select :site_id, Site.all, :id, :name, prompt: true  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -11,15 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707111715) do
+ActiveRecord::Schema.define(version: 20140910035738) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "widgets", force: true do |t|
+  create_table "shirts", force: true do |t|
     t.string   "name"
-    t.text     "description"
-    t.integer  "stock"
+    t.string   "url"
+    t.string   "image_url"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shirts", ["site_id"], name: "index_shirts_on_site_id"
+
+  create_table "sites", force: true do |t|
+    t.string   "name"
+    t.datetime "last_success"
+    t.datetime "last_failure"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

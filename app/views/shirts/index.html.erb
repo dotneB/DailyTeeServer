@@ -1,0 +1,31 @@
+<h1>Listing shirts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Image url</th>
+      <th>Site</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shirts.each do |shirt| %>
+      <tr>
+        <td><%= shirt.name %></td>
+        <td><%= shirt.url %></td>
+        <td><%= shirt.image_url %></td>
+        <td><%= shirt.site.name %></td>
+        <td><%= link_to 'Show', shirt %></td>
+        <td><%= link_to 'Edit', edit_shirt_path(shirt) %></td>
+        <td><%= link_to 'Destroy', shirt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shirt', new_shirt_path %>

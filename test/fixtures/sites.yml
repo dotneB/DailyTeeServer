@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  last_success: 2014-09-09 23:56:36
+  last_failure: 2014-09-09 23:56:36
+
+two:
+  name: MyString
+  last_success: 2014-09-09 23:56:36
+  last_failure: 2014-09-09 23:56:36
