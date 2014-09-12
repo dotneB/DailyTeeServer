@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910035738) do
+ActiveRecord::Schema.define(version: 20140912021201) do
 
   create_table "shirts", force: true do |t|
     t.string   "name"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20140910035738) do
   create_table "sites", force: true do |t|
     t.string   "name"
     t.datetime "last_success"
-    t.datetime "last_failure"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
