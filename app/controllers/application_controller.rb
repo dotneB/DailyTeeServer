@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   helper_method :isAdmin?
 
   def isAdmin?
-  	ENV['DTS_ADMIN_SECRET'] ||= Digest::SHA1.base64digest('devpass')
     Digest::SHA1.base64digest( session[:password] ) == ENV['DTS_ADMIN_SECRET']
   end
 
