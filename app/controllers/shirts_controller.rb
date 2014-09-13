@@ -70,6 +70,6 @@ class ShirtsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shirt_params
-      params.require(:shirt).permit(:name, :url, :image_url, :site_id)
+      params.require(:shirt).permit(:name, :url, :image_url, :site_id, :visible)
     end
 end

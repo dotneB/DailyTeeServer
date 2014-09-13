@@ -18,6 +18,7 @@
         <td><%= shirt.url %></td>
         <td><%= shirt.image_url %></td>
         <td><%= shirt.site.name %></td>
+        <td><%= shirt.visible %></td>
         <td><%= link_to 'Show', shirt %></td>
         <td><%= link_to 'Edit', edit_shirt_path(shirt) %></td>
         <td><%= link_to 'Destroy', shirt, method: :delete, data: { confirm: 'Are you sure?' } %></td>

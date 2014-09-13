@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912021201) do
+ActiveRecord::Schema.define(version: 20140912035845) do
 
   create_table "shirts", force: true do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140912021201) do
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "visible"
   end
 
   add_index "shirts", ["site_id"], name: "index_shirts_on_site_id"

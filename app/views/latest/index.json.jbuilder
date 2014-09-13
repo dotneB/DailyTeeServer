@@ -1,4 +1,6 @@
-json.array!(@sites) do |site|
-  json.extract! site, :id, :name, :last_success
-  json.url site_url(site, format: :json)
+json.array!(@shirts) do |shirt|
+  json.extract! shirt, :id, :name, :url, :image_url, :created_at, :updated_at
+  json.site do |json|
+    json.(shirt.site, :id, :name)
+  end
 end

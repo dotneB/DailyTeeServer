@@ -27,6 +27,10 @@
     <%= f.label :site_id %><br>
     <%= f.collection_select :site_id, Site.all, :id, :name, prompt: true  %>
   </div>
+  <div class="field">
+    <%= f.label :visible %><br>
+    <%= f.check_box  :visible  %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
