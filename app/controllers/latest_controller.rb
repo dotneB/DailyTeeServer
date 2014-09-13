@@ -23,7 +23,7 @@ class LatestController < ApplicationController
   def update
   	dailyTeeServer = Site.find(SITE_ID_DAILYTEESERVER)
   	timeSinceLastUpdate = (Time.parse(DateTime.now.to_s) - Time.parse(dailyTeeServer.last_success.to_s))
-  	if true #(timeSinceLastUpdate / DELAY_BETWEEN_UPDATE).round > 0
+  	if (timeSinceLastUpdate / DELAY_BETWEEN_UPDATE).round > 0
   		logger.info "[UPDATE - Start ===================================]"
   		logger.info sprintf("  It has been %d minutes since last update" , (timeSinceLastUpdate / 1.minute).round) 
   		
