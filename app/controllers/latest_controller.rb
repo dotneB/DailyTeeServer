@@ -16,29 +16,29 @@ class LatestController < ApplicationController
   # GET /shirts
   # GET /shirts.json
   def index
-  	update()
-  	@shirts = Shirt.where(:visible => true)
+    update()
+    @shirts = Shirt.where(:visible => true)
   end
 
   def update
-  	dailyTeeServer = Site.find(SITE_ID_DAILYTEESERVER)
-  	timeSinceLastUpdate = (Time.parse(DateTime.now.to_s) - Time.parse(dailyTeeServer.last_success.to_s))
-  	if (timeSinceLastUpdate / DELAY_BETWEEN_UPDATE).round > 0
-  		logger.info "[UPDATE - Start ===================================]"
+    dailyTeeServer = Site.find(SITE_ID_DAILYTEESERVER)
+    timeSinceLastUpdate = (Time.parse(DateTime.now.to_s) - Time.parse(dailyTeeServer.last_success.to_s))
+    if (timeSinceLastUpdate / DELAY_BETWEEN_UPDATE).round > 0
+      logger.info "[UPDATE - Start ===================================]"
       start_time = Time.now
-  		logger.info sprintf("  It has been %d minutes since last update" , (timeSinceLastUpdate / 1.minute).round) 
-  		
-  		updateShirtWoot()
+      logger.info sprintf("  It has been %d minutes since last update" , (timeSinceLastUpdate / 1.minute).round) 
+      
+      updateShirtWoot()
       updateTeeFury()
       updateRiptApparel()
 
-  		dailyTeeServer.last_success = DateTime.now
-  		dailyTeeServer.save()
+      dailyTeeServer.last_success = DateTime.now
+      dailyTeeServer.save()
 
-  		logger.info "[UPDATE - Done ====================================]"
+      logger.info "[UPDATE - Done ====================================]"
       end_time = Time.now
       logger.info "  Update took #{(end_time - start_time)*1000} milliseconds"
-  	end
+    end
   end
 
   def find_or_create_Shirt(siteId, shirtName, shirtURL, shirtPhotoURL)
@@ -64,8 +64,8 @@ class LatestController < ApplicationController
 
   def updateShirtWoot
     logger.info "[=> Shirt Woot ====================================]"
-  	
-  	shirtwoot_api_url = sprintf("http://api.woot.com/2/events.json?site=shirt.woot.com&eventType=Daily&key=%s", ENV['SHIRTWOOT_API_KEY'] || "")
+    
+    shirtwoot_api_url = sprintf("http://api.woot.com/2/events.json?site=shirt.woot.com&eventType=Daily&key=%s", ENV['SHIRTWOOT_API_KEY'] || "")
     begin
       networkResponse = Net::HTTP.get_response(URI.parse(shirtwoot_api_url))
       jsonResult = JSON.parse(networkResponse.body)
