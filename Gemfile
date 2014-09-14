@@ -7,6 +7,7 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem 'unicorn'
+  gem 'librato-rails'
 end
 group :development do
   gem 'spring'
