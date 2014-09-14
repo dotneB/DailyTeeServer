@@ -27,7 +27,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    aggregate (0.2.2)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
     bcrypt (3.1.7-x86-mingw32)
@@ -41,8 +40,6 @@ GEM
     coffee-script-source (1.7.0)
     erubis (2.7.0)
     execjs (2.2.1)
-    faraday (0.9.0)
-      multipart-post (>= 1.2, < 3)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (2.1.1)
@@ -53,16 +50,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     kgio (2.9.2)
-    librato-metrics (1.4.0)
-      aggregate (~> 0.2.2)
-      faraday (~> 0.7)
-      multi_json
-    librato-rack (0.4.5)
-      librato-metrics (~> 1.1)
-    librato-rails (0.11.1)
-      activesupport (>= 3.0)
-      librato-rack (~> 0.4.2)
-      railties (>= 3.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -70,7 +57,6 @@ GEM
     mini_portile (0.6.0)
     minitest (5.3.5)
     multi_json (1.10.1)
-    multipart-post (2.0.0)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     nokogiri (1.6.3.1-x86-mingw32)
@@ -155,7 +141,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
-  librato-rails
   nokogiri
   pg
   rails (= 4.1.4)
