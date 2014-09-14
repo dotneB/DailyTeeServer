@@ -26,7 +26,10 @@ class LatestController < ApplicationController
     rescue Exception => e
       logger.debug e.message
     end
-
+    if request.format == Mime::JSON
+      headers['Access-Control-Allow-Origin'] = '*' 
+      headers['Access-Control-Request-Method'] = '*'
+    end
     @shirts = Shirt.where(:visible => true).order('site_id, id DESC')
     
     begin
