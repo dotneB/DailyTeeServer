@@ -6,18 +6,34 @@ class LatestController < ApplicationController
   
   #####
   DELAY_BETWEEN_UPDATE = 3.hour
+  KEEP_SHIRTS_FOR = 3.day.ago
 
   SITE_ID_DAILYTEESERVER = 1
   SITE_ID_SHIRTWOOT = 2
   SITE_ID_TEEFURY = 3
   SITE_ID_RIPTAPPAREL = 4
+  SITE_ID_THEYETEE = 5
+  SITE_ID_QWERTEE = 6
+  SITE_ID_DESIGNBYHUMANS = 7
+  SITE_ID_OTHERTEES = 8
   #####
 
   # GET /shirts
   # GET /shirts.json
   def index
-    update()
-    @shirts = Shirt.where(:visible => true)
+    begin
+      update()
+    rescue Exception => e
+      logger.debug e.message
+    end
+
+    @shirts = Shirt.where(:visible => true).order('site_id, id DESC')
+    
+    begin
+      Shirt.where("created_at < :keep_shirts_for AND site_id <> 1", {:keep_shirts_for => KEEP_SHIRTS_FOR}).delete_all
+    rescue Exception => e
+      logger.debug e.message
+    end
   end
 
   def update
@@ -31,6 +47,10 @@ class LatestController < ApplicationController
       updateShirtWoot()
       updateTeeFury()
       updateRiptApparel()
+      updateTheYeTee()
+      updateQwertee()
+      updateDesignByHumans()
+      updateOtherTees()
 
       dailyTeeServer.last_success = DateTime.now
       dailyTeeServer.save()
@@ -93,13 +113,13 @@ class LatestController < ApplicationController
   def updateTeeFury
     logger.info "[=> TeeFury =======================================]"
 
-    teefury_feed_url = "http://www.teefury.com/rss/rss.xml"
+    feed_url = "http://www.teefury.com/rss/rss.xml"
     begin
-      teefury_feed = Nokogiri::XML(open(teefury_feed_url))
-      teefury_feed.remove_namespaces!
+      feed = Nokogiri::XML(open(feed_url))
+      feed.remove_namespaces!
 
       todaysShirts = Array.new
-      teefury_feed.xpath("/feed/entry").each do |entry|
+      feed.xpath("/feed/entry").each do |entry|
         shirtName = entry.xpath("title").first.content
         shirtURL = entry.xpath("link/@href").first.content
         shirtPhotoURL = entry.xpath("content/img/@src").first.content
@@ -120,13 +140,13 @@ class LatestController < ApplicationController
   def updateRiptApparel
     logger.info "[=> Ript Apparel ==================================]"
 
-    riptapparel_feed_url = "http://feeds.feedburner.com/riptapparel"
+    feed_url = "http://feeds.feedburner.com/riptapparel"
     begin
-      riptapparel_feed = Nokogiri::XML(open(riptapparel_feed_url))
-      riptapparel_feed.remove_namespaces!
+      feed = Nokogiri::XML(open(feed_url))
+      feed.remove_namespaces!
 
       todaysShirts = Array.new
-      riptapparel_feed.xpath("/rss/channel/item").take(3).each do |entry|
+      feed.xpath("/rss/channel/item").take(3).each do |entry|
         shirtName = entry.xpath("title").first.content
         shirtURL = entry.xpath("link").first.content
         entry_description = Nokogiri::HTML( entry.xpath("description").first.content )
@@ -139,6 +159,116 @@ class LatestController < ApplicationController
       record_Success(SITE_ID_RIPTAPPAREL, todaysShirts)
     rescue Exception => e
       logger.info "     Error parsing Ript Apparel feed"
+      logger.debug e.message
+    end
+  end
+
+
+
+
+  def updateTheYeTee
+    logger.info "[=> TheYeTee ======================================]"
+    feed_url = "http://theyetee.com/feeds/shirts.php"
+    begin
+      feed = Nokogiri::XML(open(feed_url))
+      feed.remove_namespaces!
+
+      todaysShirts = Array.new
+      pubDate = feed.xpath("/rss/channel/pubDate").first.content
+      feed.xpath("/rss/channel/item").each do |entry|
+        shirtName = entry.xpath("title").first.content
+        shirtName = shirtName.split(" by ").first || shirtName
+        shirtURL = entry.xpath("link").first.content        
+        entry_description = Nokogiri::HTML( entry.xpath("description").first.content )
+        entry_description.remove_namespaces!
+        shirtPhotoURL = entry_description.css("img").first["src"]
+
+        shirtPubDate = entry.xpath("pubDate").first.content
+
+        if pubDate == shirtPubDate
+          todaysShirts.push( find_or_create_Shirt(SITE_ID_THEYETEE, shirtName, shirtURL, shirtPhotoURL) )
+        end
+      end
+      
+      record_Success(SITE_ID_THEYETEE, todaysShirts)
+    rescue Exception => e
+      logger.info "     Error parsing TheYeTee feed"
+      logger.debug e.message
+    end
+  end
+
+
+
+
+  def updateQwertee
+    logger.info "[=> Qwertee =======================================]"
+    feed_url = "http://www.qwertee.com/rss/"
+    begin
+      feed = Nokogiri::XML(open(feed_url))
+      feed.remove_namespaces!
+
+      todaysShirts = Array.new
+      pubDate = feed.xpath("/rss/channel/item/pubDate").first.content
+      feed.xpath("/rss/channel/item").each do |entry|
+        shirtName = entry.xpath("title").first.content
+        shirtURL = entry.xpath("link").first.content        
+        entry_description = Nokogiri::HTML( entry.xpath("description").first.content )
+        entry_description.remove_namespaces!
+        shirtPhotoURL = entry_description.css("img").first["src"]
+
+        shirtPubDate = entry.xpath("pubDate").first.content
+
+        if pubDate == shirtPubDate
+          todaysShirts.push( find_or_create_Shirt(SITE_ID_QWERTEE, shirtName, shirtURL, shirtPhotoURL) )
+        end
+      end
+      
+      record_Success(SITE_ID_QWERTEE, todaysShirts)
+    rescue Exception => e
+      logger.info "     Error parsing Qwertee feed"
+      logger.debug e.message
+    end
+  end
+
+
+
+
+  def updateDesignByHumans
+    # Design By Humans no longer has a daily tee
+    return
+    logger.info "[=> Design By Humans ==============================]"
+    logger.info "     Not Implemented"
+  end
+
+
+
+
+  def updateOtherTees
+    logger.info "[=> Other Tees ====================================]"
+    feed_url = "http://www.othertees.com/feed/"
+    begin
+      feed = Nokogiri::XML(open(feed_url))
+      feed.remove_namespaces!
+
+      todaysShirts = Array.new
+      pubDate = feed.xpath("/rss/channel/item/pubDate").first.content
+      feed.xpath("/rss/channel/item").each do |entry|
+        shirtName = entry.xpath("title").first.content
+        shirtURL = entry.xpath("guid").first.content
+        entry_description = Nokogiri::HTML( entry.xpath("description").first.content )
+        entry_description.remove_namespaces!
+        shirtPhotoURL = entry_description.css("img").first["src"]
+
+        shirtPubDate = entry.xpath("pubDate").first.content
+
+        if pubDate == shirtPubDate
+          todaysShirts.push( find_or_create_Shirt(SITE_ID_OTHERTEES, shirtName, shirtURL, shirtPhotoURL) )
+        end
+      end
+      
+      record_Success(SITE_ID_OTHERTEES, todaysShirts)
+    rescue Exception => e
+      logger.info "     Error parsing OtherTees feed"
       logger.debug e.message
     end
   end
