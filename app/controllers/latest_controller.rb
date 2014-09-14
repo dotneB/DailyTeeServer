@@ -25,6 +25,7 @@ class LatestController < ApplicationController
   	timeSinceLastUpdate = (Time.parse(DateTime.now.to_s) - Time.parse(dailyTeeServer.last_success.to_s))
   	if (timeSinceLastUpdate / DELAY_BETWEEN_UPDATE).round > 0
   		logger.info "[UPDATE - Start ===================================]"
+      start_time = Time.now
   		logger.info sprintf("  It has been %d minutes since last update" , (timeSinceLastUpdate / 1.minute).round) 
   		
   		updateShirtWoot()
@@ -35,6 +36,8 @@ class LatestController < ApplicationController
   		dailyTeeServer.save()
 
   		logger.info "[UPDATE - Done ====================================]"
+      end_time = Time.now
+      logger.info "  Update took #{(end_time - start_time)*1000} milliseconds"
   	end
   end
 
@@ -62,7 +65,7 @@ class LatestController < ApplicationController
   def updateShirtWoot
     logger.info "[=> Shirt Woot ====================================]"
   	
-  	shirtwoot_api_url = sprintf("http://api.woot.com/2/events.json?site=shirt.woot.com&eventType=Daily&key=%s", ENV['SHIRTWOOT_API_KEY'])
+  	shirtwoot_api_url = sprintf("http://api.woot.com/2/events.json?site=shirt.woot.com&eventType=Daily&key=%s", ENV['SHIRTWOOT_API_KEY'] || "")
     begin
       networkResponse = Net::HTTP.get_response(URI.parse(shirtwoot_api_url))
       jsonResult = JSON.parse(networkResponse.body)
