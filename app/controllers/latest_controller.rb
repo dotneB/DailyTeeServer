@@ -189,7 +189,7 @@ class LatestController < ApplicationController
       feed.xpath("/rss/channel/item").each do |entry|
         shirtName = entry.xpath("title").first.content
         shirtName = shirtName.split(" by ").first || shirtName
-        shirtURL = entry.xpath("link").first.content        
+        shirtURL = "http://theyetee.com/"
         entry_description = Nokogiri::HTML( entry.xpath("description").first.content )
         entry_description.remove_namespaces!
         shirtPhotoURL = entry_description.css("img").first["src"]
