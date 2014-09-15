@@ -18,7 +18,7 @@
     <% @sites.each do |site| %>
       <tr class="<%= ((Time.parse(DateTime.now.to_s) - Time.parse(site.last_success.to_s)) / 1.day).round > 0 ? 'danger' : '' %>">
         <td><%= site.name %></td>
-        <td><%= site.last_success %></td>
+        <td><%= time_ago_in_words(site.last_success) %></td>
         <td>
           <%= link_to 'Edit', edit_site_path(site), :class => "btn btn-primary"  %>
           <!-- <%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %> -->
