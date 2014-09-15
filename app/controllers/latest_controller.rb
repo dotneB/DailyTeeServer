@@ -5,9 +5,6 @@ require 'nokogiri'
 class LatestController < ApplicationController
   
   #####
-  DELAY_BETWEEN_UPDATE = 3.hour
-  KEEP_SHIRTS_FOR = 3.day.ago
-
   SITE_ID_DAILYTEESERVER = 1
   SITE_ID_SHIRTWOOT = 2
   SITE_ID_TEEFURY = 3
@@ -33,7 +30,7 @@ class LatestController < ApplicationController
     @shirts = Shirt.where(:visible => true).order('site_id, id DESC')
     
     begin
-      Shirt.where("created_at < :keep_shirts_for AND site_id <> 1", {:keep_shirts_for => KEEP_SHIRTS_FOR}).delete_all
+      Shirt.where("created_at < :keep_shirts_for AND site_id <> 1", {:keep_shirts_for => 3.day.ago}).delete_all
     rescue Exception => e
       logError e.message
     end
@@ -41,10 +38,10 @@ class LatestController < ApplicationController
 
   def update
     dailyTeeServer = Site.find(SITE_ID_DAILYTEESERVER)
-    timeSinceLastUpdate = (Time.parse(DateTime.now.to_s) - Time.parse(dailyTeeServer.last_success.to_s))
-    if (timeSinceLastUpdate / DELAY_BETWEEN_UPDATE).round > 0
+    if dailyTeeServer.last_success.to_i < 3.hour.ago.to_i
       logInfo "[UPDATE - Start ===================================]"
       start_time = Time.now
+      timeSinceLastUpdate = (Time.parse(DateTime.now.to_s) - Time.parse(dailyTeeServer.last_success.to_s))
       logInfo sprintf("  It has been %d minutes since last update" , (timeSinceLastUpdate / 1.minute).round) 
       
       updateShirtWoot()
