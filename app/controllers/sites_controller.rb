@@ -5,7 +5,7 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = Site.all
+    @sites = Site.all.order('id')
   end
 
   # GET /sites/1
