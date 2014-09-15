@@ -24,7 +24,7 @@ class LatestController < ApplicationController
     begin
       update()
     rescue Exception => e
-      logger.debug e.message
+      logError e.message
     end
     if request.format == Mime::JSON
       headers['Access-Control-Allow-Origin'] = '*' 
@@ -35,7 +35,7 @@ class LatestController < ApplicationController
     begin
       Shirt.where("created_at < :keep_shirts_for AND site_id <> 1", {:keep_shirts_for => KEEP_SHIRTS_FOR}).delete_all
     rescue Exception => e
-      logger.debug e.message
+      logError e.message
     end
   end
 
@@ -43,9 +43,9 @@ class LatestController < ApplicationController
     dailyTeeServer = Site.find(SITE_ID_DAILYTEESERVER)
     timeSinceLastUpdate = (Time.parse(DateTime.now.to_s) - Time.parse(dailyTeeServer.last_success.to_s))
     if (timeSinceLastUpdate / DELAY_BETWEEN_UPDATE).round > 0
-      logger.info "[UPDATE - Start ===================================]"
+      logInfo "[UPDATE - Start ===================================]"
       start_time = Time.now
-      logger.info sprintf("  It has been %d minutes since last update" , (timeSinceLastUpdate / 1.minute).round) 
+      logInfo sprintf("  It has been %d minutes since last update" , (timeSinceLastUpdate / 1.minute).round) 
       
       updateShirtWoot()
       updateTeeFury()
@@ -58,16 +58,24 @@ class LatestController < ApplicationController
       dailyTeeServer.last_success = DateTime.now
       dailyTeeServer.save()
 
-      logger.info "[UPDATE - Done ====================================]"
+      logInfo "[UPDATE - Done ====================================]"
       end_time = Time.now
-      logger.info "  Update took #{(end_time - start_time)*1000} milliseconds"
+      logInfo "  Update took #{(end_time - start_time)*1000} milliseconds"
     end
   end
 
+  def logInfo(message)
+    logger.info "[DTS][INFO] " + message
+  end
+
+  def logError(message)
+    logger.info "[DTS][ERROR] " + message
+  end
+
   def find_or_create_Shirt(siteId, shirtName, shirtURL, shirtPhotoURL)
-    logger.info shirtName
-    logger.info shirtURL
-    logger.info shirtPhotoURL
+    logInfo shirtName
+    logInfo shirtURL
+    logInfo shirtPhotoURL
 
     thisShirt = Shirt.create_with(visible: true).find_or_create_by(:name => shirtName, :url => shirtURL, :image_url => shirtPhotoURL, :site_id => siteId)
     return thisShirt.id
@@ -86,7 +94,7 @@ class LatestController < ApplicationController
 
 
   def updateShirtWoot
-    logger.info "[=> Shirt Woot ====================================]"
+    logInfo "[=> Shirt Woot ====================================]"
     
     shirtwoot_api_url = sprintf("http://api.woot.com/2/events.json?site=shirt.woot.com&eventType=Daily&key=%s", ENV['SHIRTWOOT_API_KEY'] || "")
     begin
@@ -104,8 +112,8 @@ class LatestController < ApplicationController
       
       record_Success(SITE_ID_SHIRTWOOT, todaysShirts)
     rescue Exception => e
-      logger.info "     Error parsing ShirtWoot API"
-      logger.debug e.message
+      logError "Error parsing ShirtWoot API"
+      logError e.message
     end
   end
 
@@ -114,7 +122,7 @@ class LatestController < ApplicationController
 
 
   def updateTeeFury
-    logger.info "[=> TeeFury =======================================]"
+    logInfo "[=> TeeFury =======================================]"
 
     feed_url = "http://www.teefury.com/rss/rss.xml"
     begin
@@ -132,8 +140,8 @@ class LatestController < ApplicationController
       
       record_Success(SITE_ID_TEEFURY, todaysShirts)
     rescue Exception => e
-      logger.info "     Error parsing TeeFury feed"
-      logger.debug e.message
+      logError "Error parsing TeeFury feed"
+      logError e.message
     end
   end
 
@@ -141,7 +149,7 @@ class LatestController < ApplicationController
 
 
   def updateRiptApparel
-    logger.info "[=> Ript Apparel ==================================]"
+    logInfo "[=> Ript Apparel ==================================]"
 
     feed_url = "http://feeds.feedburner.com/riptapparel"
     begin
@@ -161,8 +169,8 @@ class LatestController < ApplicationController
       
       record_Success(SITE_ID_RIPTAPPAREL, todaysShirts)
     rescue Exception => e
-      logger.info "     Error parsing Ript Apparel feed"
-      logger.debug e.message
+      logError "Error parsing Ript Apparel feed"
+      logError e.message
     end
   end
 
@@ -170,7 +178,7 @@ class LatestController < ApplicationController
 
 
   def updateTheYeTee
-    logger.info "[=> TheYeTee ======================================]"
+    logInfo "[=> TheYeTee ======================================]"
     feed_url = "http://theyetee.com/feeds/shirts.php"
     begin
       feed = Nokogiri::XML(open(feed_url))
@@ -195,8 +203,8 @@ class LatestController < ApplicationController
       
       record_Success(SITE_ID_THEYETEE, todaysShirts)
     rescue Exception => e
-      logger.info "     Error parsing TheYeTee feed"
-      logger.debug e.message
+      logError "Error parsing TheYeTee feed"
+      logError e.message
     end
   end
 
@@ -204,7 +212,7 @@ class LatestController < ApplicationController
 
 
   def updateQwertee
-    logger.info "[=> Qwertee =======================================]"
+    logInfo "[=> Qwertee =======================================]"
     feed_url = "http://www.qwertee.com/rss/"
     begin
       feed = Nokogiri::XML(open(feed_url))
@@ -228,8 +236,8 @@ class LatestController < ApplicationController
       
       record_Success(SITE_ID_QWERTEE, todaysShirts)
     rescue Exception => e
-      logger.info "     Error parsing Qwertee feed"
-      logger.debug e.message
+      logError "Error parsing Qwertee feed"
+      logError e.message
     end
   end
 
@@ -239,15 +247,15 @@ class LatestController < ApplicationController
   def updateDesignByHumans
     # Design By Humans no longer has a daily tee
     return
-    logger.info "[=> Design By Humans ==============================]"
-    logger.info "     Not Implemented"
+    logInfo "[=> Design By Humans ==============================]"
+    logInfo "Not Implemented"
   end
 
 
 
 
   def updateOtherTees
-    logger.info "[=> Other Tees ====================================]"
+    logInfo "[=> Other Tees ====================================]"
     feed_url = "http://www.othertees.com/feed/"
     begin
       feed = Nokogiri::XML(open(feed_url))
@@ -271,8 +279,8 @@ class LatestController < ApplicationController
       
       record_Success(SITE_ID_OTHERTEES, todaysShirts)
     rescue Exception => e
-      logger.info "     Error parsing OtherTees feed"
-      logger.debug e.message
+      logError "Error parsing OtherTees feed"
+      logError e.message
     end
   end
 
