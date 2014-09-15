@@ -1,4 +1,4 @@
-<%= form_for(@shirt) do |f| %>
+<%= form_for @shirt, :html => {'role' => 'form'} do |f| %>
   <% if @shirt.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@shirt.errors.count, "error") %> prohibited this shirt from being saved:</h2>
@@ -11,25 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :url %><br>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, :class => "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :image_url %><br>
-    <%= f.text_field :image_url %>
+    <%= f.text_field :image_url, :class => "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :site_id %><br>
     <%= f.collection_select :site_id, Site.all, :id, :name, prompt: true  %>
   </div>
-  <div class="field">
-    <%= f.label :visible %><br>
-    <%= f.check_box  :visible  %>
+  <div class="form-group">
+    <%= f.label :visible %> <%= f.check_box  :visible  %>
   </div>
   <div class="actions">
     <%= f.submit %>
