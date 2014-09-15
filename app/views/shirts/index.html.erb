@@ -1,27 +1,33 @@
+<ul class="nav nav-tabs nav-justified">
+  <li><%= link_to 'Sites', sites_path %></li>  
+  <li class="active"><%= link_to 'Shirts', shirts_path %></li>  
+</ul>
+
 <h1>Listing shirts</h1>
 
-<table>
+<table class="table table-bordered table-condensed">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Url</th>
-      <th>Image url</th>
       <th>Site</th>
-      <th colspan="3"></th>
+      <th>Name</th>
+      <th>Content</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @shirts.each do |shirt| %>
-      <tr>
-        <td><%= shirt.name %></td>
-        <td><%= shirt.url %></td>
-        <td><%= shirt.image_url %></td>
+      <tr class="<%= shirt.visible ? '' : 'danger' %>">
         <td><%= shirt.site.name %></td>
-        <td><%= shirt.visible %></td>
-        <td><%= link_to 'Show', shirt %></td>
-        <td><%= link_to 'Edit', edit_shirt_path(shirt) %></td>
-        <td><%= link_to 'Destroy', shirt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= shirt.name %></td>
+        <td>
+          <img src="<%= shirt.image_url %>" class="img-responsive" style="max-width:25%" alt="Responsive image"><br />
+          <%= shirt.url %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_shirt_path(shirt), :class => "btn btn-primary" %><br /><br />
+          <%= link_to 'Destroy', shirt, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -29,4 +35,4 @@
 
 <br>
 
-<%= link_to 'New Shirt', new_shirt_path %>
+<%= link_to 'New Shirt', new_shirt_path, :class => "btn btn-info" %>
