@@ -1,2 +1,24 @@
-<h1>Latest#index</h1>
-<p>Find me in app/views/latest/index.html.erb</p>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">Daily Tee Reminder</span>
+      <a class="btn btn-lg btn-primary navbar-btn" rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/daily-tee-reminder/jejgpidmmdbklgglckbldbpojdpekgff">Install the extension</a>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
+
+<% @shirts.each do |shirt| %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <a href="#" class="teeSiteLink" metadata-url="<%= shirt.url %>"><img class="teeImage" style="max-height:350px" src="<%= shirt.image_url %>"></a>
+  </div>
+  <div class="panel-heading"><%= shirt.site.name %>:  <%= shirt.name %></div>  
+</div>
+<% end %>
