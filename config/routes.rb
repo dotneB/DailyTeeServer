@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'admin/index'
   post 'admin/login'
-  post 'admin/logout'
+  get 'admin/logout'
   scope '/admin' do
     resources :shirts, :sites
   end

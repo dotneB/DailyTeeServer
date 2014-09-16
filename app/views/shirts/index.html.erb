@@ -1,11 +1,8 @@
-<ul class="nav nav-tabs nav-justified">
-  <li><%= link_to 'Sites', sites_path %></li>  
-  <li class="active"><%= link_to 'Shirts', shirts_path %></li>  
-</ul>
+<%= render 'admin/header' %>
 
 <h1>Listing shirts</h1>
 
-<table class="table table-bordered table-condensed">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Site</th>
@@ -25,8 +22,8 @@
           <%= shirt.url %>
         </td>
         <td>
-          <%= link_to 'Edit', edit_shirt_path(shirt), :class => "btn btn-primary" %><br /><br />
-          <%= link_to 'Destroy', shirt, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %>
+          <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_shirt_path(shirt), :class => "btn btn-primary" %>
+          <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, shirt, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %>
         </td>
       </tr>
     <% end %>

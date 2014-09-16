@@ -1,7 +1,4 @@
-<ul class="nav nav-tabs nav-justified">
-  <li class="active"><%= link_to 'Sites', sites_path %></li>  
-  <li><%= link_to 'Shirts', shirts_path %></li>  
-</ul>
+<%= render 'admin/header' %>
 
 <h1>Listing sites</h1>
 
@@ -20,8 +17,8 @@
         <td><%= site.name %></td>
         <td><%= time_ago_in_words(site.last_success) %></td>
         <td>
-          <%= link_to 'Edit', edit_site_path(site), :class => "btn btn-primary"  %>
-          <!-- <%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %> -->
+          <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_site_path(site), :class => "btn btn-primary"  %>
+          <!-- <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, site, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %> -->
         </td>
       </tr>
     <% end %>

@@ -1,4 +1,9 @@
-<%= form_tag admin_login_path do %>
-  Password: <%= password_field_tag :password %>
-  <%= submit_tag "Login" %>  
+<%= render 'admin/header' %>
+
+<%= form_tag admin_login_path, {'role' => 'form', 'class' => 'form-inline'} do %>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <%= password_field_tag :password, "", class: "form-control" %>
+  </div>
+  <%= submit_tag "Login", :class => "btn btn-default" %>
 <% end %>
