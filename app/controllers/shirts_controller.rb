@@ -5,7 +5,7 @@ class ShirtsController < ApplicationController
   # GET /shirts
   # GET /shirts.json
   def index
-    @shirts = Shirt.all.order('visible DESC, site_id, id DESC')
+    @shirts = Shirt.all.order('visible DESC, created_at DESC')
   end
 
   # GET /shirts/1

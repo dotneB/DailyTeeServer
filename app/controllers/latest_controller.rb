@@ -27,7 +27,7 @@ class LatestController < ApplicationController
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Request-Method'] = '*'
     end
-    @shirts = Shirt.where(:visible => true).order('site_id, id DESC')
+    @shirts = Shirt.where(:visible => true).order('created_at DESC')
     
     begin
       Shirt.where("created_at < :keep_shirts_for AND site_id <> 1", {:keep_shirts_for => 3.day.ago}).delete_all
@@ -44,13 +44,12 @@ class LatestController < ApplicationController
       timeSinceLastUpdate = (Time.parse(DateTime.now.to_s) - Time.parse(dailyTeeServer.last_success.to_s))
       logInfo sprintf("  It has been %d minutes since last update" , (timeSinceLastUpdate / 1.minute).round) 
       
-      updateShirtWoot()
-      updateTeeFury()
-      updateRiptApparel()
-      updateTheYeTee()
-      updateQwertee()
-      updateDesignByHumans()
       updateOtherTees()
+      updateQwertee()
+      updateTheYeTee()
+      updateRiptApparel()
+      updateTeeFury()
+      updateShirtWoot()
 
       dailyTeeServer.last_success = DateTime.now
       dailyTeeServer.save()
