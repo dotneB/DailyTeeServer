@@ -73,7 +73,7 @@ class LatestController < ApplicationController
     logInfo shirtURL
     logInfo shirtPhotoURL
 
-    thisShirt = Shirt.create_with(visible: true, :image_url => shirtPhotoURL).find_or_create_by(:name => shirtName, :url => shirtURL, :site_id => siteId)
+    thisShirt = Shirt.create_with(visible: true, :name => shirtName, :url => shirtURL, :image_url => shirtPhotoURL).find_or_create_by(:original_hash => Digest::SHA1.base64digest(shirtName + shirtURL + shirtPhotoURL), :site_id => siteId)
     return thisShirt.id
   end
 
