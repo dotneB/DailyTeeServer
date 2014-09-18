@@ -101,7 +101,7 @@ class LatestController < ApplicationController
       jsonResult.first['Offers'].each do |offer|
         shirtName = offer['Title']
         shirtURL = offer['Url']
-        shirtPhotoURL = offer['Photos'].last['Url']
+        shirtPhotoURL = offer['Photos'].select{|photo| photo['Tags'].include?('gallery')}.take(2).last['Url']
 
         todaysShirts.push( find_or_create_Shirt(SITE_ID_SHIRTWOOT, shirtName, shirtURL, shirtPhotoURL) )
       end
