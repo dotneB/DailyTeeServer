@@ -193,7 +193,7 @@ class LatestController < ApplicationController
 
         shirtPubDate = entry.xpath("pubDate").first.content
 
-        if pubDate == shirtPubDate
+        if pubDate == shirtPubDate and shirtPhotoURL.include? "/A_"
           todaysShirts.push( find_or_create_Shirt(SITE_ID_THEYETEE, shirtName, shirtURL, shirtPhotoURL) )
         end
       end
