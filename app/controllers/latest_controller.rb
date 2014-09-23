@@ -92,10 +92,17 @@ class LatestController < ApplicationController
   def updateShirtWoot
     logInfo "[=> Shirt Woot ====================================]"
     
-    shirtwoot_api_url = sprintf("http://api.woot.com/2/events.json?site=shirt.woot.com&eventType=Daily&key=%s", ENV['SHIRTWOOT_API_KEY'] || "")
+    shirtwoot_daily_api_url = sprintf("http://api.woot.com/2/events.json?site=shirt.woot.com&eventType=Daily&key=%s", ENV['SHIRTWOOT_API_KEY'] || "")
+    shirtwoot_wootoff_api_url = sprintf("http://api.woot.com/2/events.json?site=shirt.woot.com&eventType=WootOff&key=%s", ENV['SHIRTWOOT_API_KEY'] || "")
     begin
-      networkResponse = Net::HTTP.get_response(URI.parse(shirtwoot_api_url))
+      networkResponse = Net::HTTP.get_response(URI.parse(shirtwoot_daily_api_url))
       jsonResult = JSON.parse(networkResponse.body)
+
+      if jsonResult.nil? or jsonResult.first.nil? or jsonResult.first['Offers'].nil?
+        logInfo "Fetching WootOff instead"
+        networkResponse = Net::HTTP.get_response(URI.parse(shirtwoot_wootoff_api_url))
+        jsonResult = JSON.parse(networkResponse.body)
+      end
 
       todaysShirts = Array.new
       jsonResult.first['Offers'].each do |offer|
