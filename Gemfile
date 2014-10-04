@@ -8,7 +8,6 @@ group :production do
   gem 'rails_12factor'
   gem 'unicorn'
   gem 'newrelic_rpm'
-  gem 'oboe-heroku'
 end
 group :development do
   gem 'spring'
