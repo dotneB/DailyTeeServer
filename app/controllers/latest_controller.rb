@@ -135,7 +135,8 @@ class LatestController < ApplicationController
       todaysShirts = Array.new
       feed.xpath("/feed/entry").each do |entry|
         shirtName = entry.xpath("title").first.content
-        shirtURL = entry.xpath("link/@href").first.content
+        #shirtURL = entry.xpath("link/@href").first.content
+        shirtURL = "http://www.teefury.com/"
         shirtPhotoURL = entry.xpath("content").first.content[ /img.*?src="(.*?)"/i,1 ].to_s
 
         todaysShirts.push( find_or_create_Shirt(SITE_ID_TEEFURY, shirtName, shirtURL, shirtPhotoURL) )
