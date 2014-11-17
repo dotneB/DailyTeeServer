@@ -28,7 +28,7 @@ class LatestController < ApplicationController
       headers['Access-Control-Request-Method'] = '*'
 
       tracker = Staccato.tracker( ENV['GA_TRACKING_ID'] )
-      tracker.pageview(path: '/latest.json')
+      tracker.pageview(path: '/latest.json', user_ip: request.remote_ip, user_agent: request.user_agent )
     end
     @shirts = Shirt.where(:visible => true).order('created_at DESC')
     
