@@ -26,6 +26,9 @@ class LatestController < ApplicationController
     if request.format == Mime::JSON
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Request-Method'] = '*'
+
+      tracker = Staccato.tracker( ENV['GA_TRACKING_ID'] )
+      tracker.pageview(path: '/latest.json')
     end
     @shirts = Shirt.where(:visible => true).order('created_at DESC')
     
