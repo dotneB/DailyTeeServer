@@ -40,7 +40,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'nokogiri'
 
-
+gem 'staccato'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
