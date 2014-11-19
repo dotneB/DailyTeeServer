@@ -221,7 +221,7 @@ class LatestController < ApplicationController
 
   def updateQwertee
     logInfo "[=> Qwertee =======================================]"
-    feed_url = "http://www.qwertee.com/rss/"
+    feed_url = "https://www.qwertee.com/rss/"
     begin
       feed = Nokogiri::XML(open(feed_url))
       feed.remove_namespaces!
