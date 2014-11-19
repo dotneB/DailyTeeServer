@@ -1,0 +1,535 @@
+[
+{
+	"Type": "Daily",
+	"Id": "5b983fe3-7279-4174-bdc0-4a8f548d7e98",
+	"Title": "Cupcake Science",
+	"Site": "shirt.woot.com",
+	"StartDate": "2014-11-16T06:00:00Z",
+	"EndDate": "2014-11-17T06:00:00Z",
+	"Offers": [
+	{
+		"Artist":
+		{
+			"Avatar": "https://d3i3n97mf62g8s.cloudfront.net/05b3df0985a7a7bf45e605af676f1563-64-64-.png",
+			"Biography": "<p>The wind whispers \"spiritgreen.\"</p>\r\n\r\n<dl>\r\n\t<dt>Hometown:</dt>\r\n\t<dd>Great Britain</dd>\r\n\t<dt>Links:</dt>\r\n\t<dd>\r\n\t<ul>\r\n\t\t<li style=\"list-style-type: disc;\"><a href=\"http://shirt.woot.com/catalog?q=spiritgreen&sort=best-selling\" style=\"text-decoration: none; color: rgb(0, 113, 176);\">Spiritgreen's</a>&nbsp;<a href=\"http://shirt.woot.com/catalog?q=spiritgreen&sort=best-selling\" style=\"text-decoration: none; color: rgb(0, 113, 176);\">Shirt.Woot Catalog</a></li>\r\n\t\t<li style=\"list-style-type: disc;\"><a href=\"https://www.facebook.com/SpiritgreenArt\" style=\"text-decoration: none; color: rgb(0, 113, 176);\">On Facebook</a></li>\r\n\t\t<li style=\"list-style-type: disc;\"><a href=\"https://twitter.com/Spiritgreen_Art\" style=\"text-decoration: none; color: rgb(0, 113, 176);\">On Twitter</a></li>\r\n\t</ul>\r\n\t</dd>\r\n</dl>\r\n",
+			"Name": "spiritgreen"
+		},
+		"DiscussionUrl": "http://shirt.woot.com/forums/viewpost.aspx?postid=6044723",
+		"Features": "<p><strong>Design Placement:</strong>&nbsp;Center</p>\r\n\r\n<p><strong>Design Size:</strong><br />\r\n3X - M, WXL-WL: 13”x11.57” &nbsp;<br />\r\nS, WM-WS, K12 - K4: 9”x8.01” &nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Pantone Colors:</strong>&nbsp;&nbsp;White&nbsp;- 100 C&nbsp;- 305 C&nbsp;- 134 C&nbsp;- 710 C&nbsp;- 655 C&nbsp;</p>\r\n\r\n<p><strong>Features:</strong></p>\r\n\r\n<ul>\r\n\t<li>Fiber Content: 4.5 oz 100% Combed Ringspun Cotton</li>\r\n\t<li>Manufactured In: Honduras/Nicaragua</li>\r\n\t<li>Printed In: Carrollton, Texas, USA</li>\r\n</ul>\r\n\r\n<p><strong>Sizing Chart:</strong></p>\r\n\r\n<p>Please check our <a class=\"modalPopUp sizingchart\" href=\"http://shirt.woot.com/sizingchart/tee/111\">sizing chart</a> before you order.</p>\r\n",
+		"Id": "bd28f11e-f513-4f0d-b804-d94b46228ccf",
+		"Items": [
+		{
+			"Id": "c2aab49c-cc08-4c34-b6f3-7404b5ca37ea",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Men's Small"
+			}],
+			"PurchaseLimit": 3
+		},
+		{
+			"Id": "cdb9f553-ace8-4c6e-85b2-19cd5bc24b68",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Men's Medium"
+			}],
+			"PurchaseLimit": 3
+		},
+		{
+			"Id": "9c94fb0d-d9df-40ef-bb3b-d178af7668d8",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Men's Large"
+			}],
+			"PurchaseLimit": 3
+		},
+		{
+			"Id": "763a891d-162d-42bd-af56-d6749d602943",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Men's XL"
+			}],
+			"PurchaseLimit": 3
+		},
+		{
+			"Id": "ac2ffb51-02ea-45d7-a0d4-d302e87c4452",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Men's 2XL"
+			}],
+			"PurchaseLimit": 3
+		},
+		{
+			"Id": "796724fc-0e61-43f3-8951-f8fb105497c6",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Men's 3XL"
+			}],
+			"PurchaseLimit": 0
+		},
+		{
+			"Id": "78034c3d-8e8d-41ae-9ed9-fa6daaca8312",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Women's Small"
+			}],
+			"PurchaseLimit": 3
+		},
+		{
+			"Id": "646f039d-3b12-423b-8f9a-7c419430cd97",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Women's Medium"
+			}],
+			"PurchaseLimit": 3
+		},
+		{
+			"Id": "35a227ad-6118-4899-b35c-8dfadcb63b6f",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Women's Large"
+			}],
+			"PurchaseLimit": 3
+		},
+		{
+			"Id": "c2386d1a-b0f1-4c50-9e9a-34a2c447c4a4",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Women's XL"
+			}],
+			"PurchaseLimit": 3
+		},
+		{
+			"Id": "4bfd1b66-8ece-4c23-bcb5-6092c912b776",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Kids 4"
+			}],
+			"PurchaseLimit": 0
+		},
+		{
+			"Id": "71d181ef-21d9-48e9-844a-feba0cbe8ed2",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Kids 6"
+			}],
+			"PurchaseLimit": 0
+		},
+		{
+			"Id": "343528fa-4f06-43ad-9744-5db48fe4a595",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Kids 8"
+			}],
+			"PurchaseLimit": 0
+		},
+		{
+			"Id": "4bd3e053-25b9-4fb5-a312-eeeb1a792a1c",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Kids 10"
+			}],
+			"PurchaseLimit": 0
+		},
+		{
+			"Id": "91f9717c-97ed-4c89-b6fe-32b4775a51ce",
+			"SalePrice": 12.0,
+			"Attributes": [
+			{
+				"Key": "Color",
+				"Value": "Royal Blue"
+			},
+			{
+				"Key": "Size",
+				"Value": "Kids 12"
+			}],
+			"PurchaseLimit": 0
+		}],
+		"Url": "http://shirt.woot.com/offers/cupcake-science-1?utm_source=version2&utm_medium=json&utm_campaign=api.woot.com",
+		"EstimatedShipDate":
+		{
+			"MessagePrefix": "In Stock.",
+			"MessageBody": "Ships in 1-2 business days"
+		},
+		"PercentageRemaining": 100,
+		"Photos": [
+		{
+			"Url": "http://d3gqasl9vmjfd8.cloudfront.net/99bb7088-536d-4bbf-a761-a32caa8edfa0.png",
+			"Width": 278,
+			"Height": 208,
+			"Tags": []
+		},
+		{
+			"Url": "http://d3gqasl9vmjfd8.cloudfront.net/0f328992-e2e8-4d77-a88c-8acbf43ab612.png",
+			"Width": 180,
+			"Height": 135,
+			"Tags": []
+		},
+		{
+			"Url": "http://d3gqasl9vmjfd8.cloudfront.net/0a9c87e6-cc0b-4840-b398-b6cdc2f10a13.png",
+			"Width": 160,
+			"Height": 120,
+			"Tags": []
+		},
+		{
+			"Url": "http://d3gqasl9vmjfd8.cloudfront.net/a0d3f9b9-efdd-448c-bbdc-b69bc73636b6.png",
+			"Width": 114,
+			"Height": 85,
+			"Tags": []
+		},
+		{
+			"Url": "http://d3gqasl9vmjfd8.cloudfront.net/81dce7a6-d2bb-4517-80d1-b52d91d6102b.png",
+			"Width": 604,
+			"Height": 453,
+			"Tags": []
+		},
+		{
+			"Url": "http://d3gqasl9vmjfd8.cloudfront.net/7ea9a5fe-07f3-42cc-8e87-ba233633e54b.png",
+			"Width": 188,
+			"Height": 142,
+			"Tags": []
+		},
+		{
+			"Url": "http://d3gqasl9vmjfd8.cloudfront.net/fe34b6e5-7629-46c3-b257-a7d548708134.png",
+			"Width": 200,
+			"Height": 100,
+			"Tags": []
+		},
+		{
+			"Url": "http://d3gqasl9vmjfd8.cloudfront.net/f64d2608-8d2b-46d9-a095-2a234bd42f3d.png",
+			"Width": 188,
+			"Height": 100,
+			"Tags": []
+		},
+		{
+			"Url": "http://d3gqasl9vmjfd8.cloudfront.net/d76dd44c-ca03-40e9-932c-766b567ced13.png",
+			"Width": 588,
+			"Height": 441,
+			"Tags": ["gallery", "fullsize-0"]
+		},
+		{
+			"Url": "http://d3gqasl9vmjfd8.cloudfront.net/d967d1d6-4f96-404a-b33b-151b48708171.png",
+			"Width": 588,
+			"Height": 441,
+			"Tags": ["gallery", "fullsize-1"]
+		}],
+		"ShippingMethods": [
+		{
+			"Name": "Standard",
+			"PerOrderAmount": 0.0,
+			"PerEventAmount": 0.0,
+			"PerItemAmount": 0.0
+		},
+		{
+			"Name": "One-Day",
+			"PerOrderAmount": 0.0,
+			"PerEventAmount": 5.0,
+			"PerItemAmount": 0.0
+		},
+		{
+			"Name": "Standard International",
+			"PerOrderAmount": 0.0,
+			"PerEventAmount": 5.0,
+			"PerItemAmount": 0.0
+		}],
+		"SoldOut": false,
+		"Specs": "",
+		"Subtitle": "Quant-yum",
+		"Teaser": "3rd Place in <a href=\"http://shirt.woot.com/Derby/Derby.aspx?n=382\">Derby #382: Baked Goods</a>, with 94 votes!",
+		"Title": "Cupcake Science",
+		"WriteUp": "<p>According to science, any cupcake that is not currently observed being put into my mouth will exist in a quantum superposition where it exists in all mouths simultaneously across the universe until the wave function collapses and I get the spongy, cream cheese frosted goodness all to myself.</p>\r\n\r\n<p>Screw you, universe!</p>\r\n",
+		"Stats":
+		{
+			"FirstSucker": "polikar",
+			"LastPurchase": "2014-11-17T04:45:54.937Z",
+			"LastWooterToWoot": "stina8753",
+			"SiteOrderPace": 0.0,
+			"OverallOrderPace": 0.0,
+			"PercentageOfSalesPerDay": [
+			{
+				"Key": "Mon",
+				"Value": 0
+			},
+			{
+				"Key": "Tue",
+				"Value": 0
+			},
+			{
+				"Key": "Wed",
+				"Value": 0
+			},
+			{
+				"Key": "Thu",
+				"Value": 0
+			},
+			{
+				"Key": "Fri",
+				"Value": 0
+			},
+			{
+				"Key": "Sat",
+				"Value": 0
+			},
+			{
+				"Key": "Sun",
+				"Value": 100
+			}],
+			"PercentageOfSalesPerHour": [
+			{
+				"Key": "12",
+				"Value": 4
+			},
+			{
+				"Key": "1",
+				"Value": 5
+			},
+			{
+				"Key": "2",
+				"Value": 2
+			},
+			{
+				"Key": "3",
+				"Value": 1
+			},
+			{
+				"Key": "4",
+				"Value": 1
+			},
+			{
+				"Key": "5",
+				"Value": 2
+			},
+			{
+				"Key": "6",
+				"Value": 4
+			},
+			{
+				"Key": "7",
+				"Value": 6
+			},
+			{
+				"Key": "8",
+				"Value": 9
+			},
+			{
+				"Key": "9",
+				"Value": 7
+			},
+			{
+				"Key": "10",
+				"Value": 6
+			},
+			{
+				"Key": "11",
+				"Value": 7
+			},
+			{
+				"Key": "12",
+				"Value": 5
+			},
+			{
+				"Key": "1",
+				"Value": 6
+			},
+			{
+				"Key": "2",
+				"Value": 4
+			},
+			{
+				"Key": "3",
+				"Value": 4
+			},
+			{
+				"Key": "4",
+				"Value": 4
+			},
+			{
+				"Key": "5",
+				"Value": 3
+			},
+			{
+				"Key": "6",
+				"Value": 3
+			},
+			{
+				"Key": "7",
+				"Value": 4
+			},
+			{
+				"Key": "8",
+				"Value": 5
+			},
+			{
+				"Key": "9",
+				"Value": 5
+			},
+			{
+				"Key": "10",
+				"Value": 3
+			},
+			{
+				"Key": "11",
+				"Value": 0
+			}],
+			"PurchaserExperience":
+			{
+				"first woot": 8,
+				"second woot": 4,
+				"< 10 woots": 23,
+				"< 25 woots": 22,
+				"≥ 25 woots": 42
+			},
+			"PurchaserSeniority":
+			{
+				"joined today": 6,
+				"one week old": 1,
+				"one month old": 1,
+				"one year old": 10,
+				"> one year old": 83
+			},
+			"QuantityBreakdown":
+			{
+				"bought 1": 96,
+				"bought 2": 4,
+				"bought 3": 1
+			},
+			"SiteWootsSold": 74.0,
+			"OverallWootsSold": 91.0,
+			"SpeedToFirstWoot": "00:01:49.3990000",
+			"WootsByState":
+			{
+				"AK": 37.024576955397485,
+				"AL": 38.510916964715705,
+				"AR": 36.072348146427871,
+				"AZ": 61.708226798228736,
+				"CA": 54.351064845351893,
+				"CO": 62.744030613900705,
+				"CT": 44.14430103426222,
+				"DC": 131.10352595268378,
+				"FL": 39.16152995919164,
+				"GA": 51.573280339063473,
+				"HI": 38.662034822600162,
+				"IA": 17.263911996867677,
+				"ID": 50.324644546075895,
+				"IL": 51.23676354292,
+				"IN": 52.723391322393233,
+				"KS": 55.299505275860824,
+				"KY": 18.179611668436145,
+				"LA": 23.202157083609208,
+				"MA": 124.49942899695084,
+				"MD": 86.536683829394676,
+				"ME": 79.183301273099431,
+				"MI": 31.926701881827647,
+				"MN": 64.45189743499688,
+				"MO": 35.1261617523258,
+				"MS": 17.723876184695303,
+				"MT": 26.577323282554755,
+				"NC": 33.092401065295483,
+				"NE": 43.194566045895456,
+				"NH": 19.974630880771237,
+				"NJ": 29.909371422823018,
+				"NM": 12.770139126131779,
+				"NV": 48.686364959611787,
+				"NY": 50.208843243653568,
+				"OH": 36.4699771308312,
+				"OK": 21.029225723433171,
+				"OR": 68.638721976158408,
+				"PA": 72.455725108368426,
+				"RI": 74.948204671842021,
+				"SC": 28.425873418404386,
+				"SD": 32.297529189625038,
+				"TN": 16.574577518404695,
+				"TX": 50.196060893182214,
+				"UT": 38.056579511244365,
+				"VA": 72.304751359750455,
+				"VT": 84.047560622074982,
+				"WA": 97.761342469555217,
+				"WI": 64.734471373505187,
+				"WV": 14.191088754528568
+			}
+		}
+	}]
+}]

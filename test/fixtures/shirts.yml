@@ -1,13 +1,73 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  url: MyString
-  image_url: MyString
-  site_id: 
+    id: 79
+    name: Father of the Year
+    url: http://www.othertees.com/
+    image_url: http://www.othertees.com/photos/shop/m_b7a394766de59093114f79fc25a673b8.PNG
+    site_id: 8
+    visible: t
+    original_hash: tSe5YF/hYeUauk3GhgCKdhUk1F4=
 
-two:
-  name: MyString
-  url: MyString
-  image_url: MyString
-  site_id: 
+two:    
+    id: 80
+    name: Warm Hearts
+    url: 6
+    image_url: 2014-11-17 03:11:17.492135
+    site_id: 2014-11-17 03:11:17.492135
+    visible: t
+    original_hash: 4w7HjDGk8D1o2SZ2KwntoNVUkC0=
+
+three:  
+    id: 81
+    name: The last space bender
+    url: http://www.qwertee.com/
+    image_url: http://www.qwertee.com/images/designs/zoom/58450.jpg
+    site_id: 6
+    visible: t
+    original_hash: O+VoijYWCUC4MmaJLzqsjbSTiq0=
+
+four:   
+    id: 82
+    name: When Worlds Collide
+    url: http://feedproxy.google.com/~r/riptapparel/~3/_YbgMoC977U/
+    image_url: https://uploads-riptapparel-com.s3.amazonaws.com/products/20438-mens-141116-2.8496.png
+    site_id: 4
+    visible: t
+    original_hash: WxteAMgD5rDKhH67uKcJy+DhkEw=
+
+five:   
+    id: 83
+    name: Pulporama
+    url: http://feedproxy.google.com/~r/riptapparel/~3/zFcxWOkxB-o/
+    image_url: https://uploads-riptapparel-com.s3.amazonaws.com/products/20431-mens-141116-3.8cf6.png
+    site_id: 4
+    visible: t
+    original_hash: Z8+ADg4m2CRGVsAJ80ltUaqB89s=
+
+six:    
+    id: 84
+    name: Let&#39;s Destroy ALL Humans, Baby
+    url: http://feedproxy.google.com/~r/riptapparel/~3/8YEvglVA8PI/
+    image_url: https://uploads-riptapparel-com.s3.amazonaws.com/products/20413-mens-141116-1.2c91.png
+    site_id: 4
+    visible: t
+    original_hash: xB1vqp0rugsRa86+k8UPTbw4ySk=
+
+seven:  
+    id: 85
+    name: Triple Cornetto Portrait
+    url: http://www.teefury.com/
+    image_url: http://www.teefury.com/media/catalog/product/b/-/b-mco-triple_cornetto_portrait_sil.jpg
+    site_id: 3
+    visible: t
+    original_hash: wVqpACbzHILksQ+yolIX214qBlQ=
+
+height: 
+    id: 86
+    name: Tapisserie D'arrrggghhh
+    url: http://www.teefury.com/
+    image_url: http://www.teefury.com/media/catalog/product/b/-/b-mco-tapisserie-d_arrrggghhh_tur.jpg
+    site_id: 3
+    visible: t
+    original_hash: VMg+S/zdyPfCu/YasOIZ5dSb7CE=
