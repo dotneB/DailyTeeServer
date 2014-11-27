@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Qwertee.com Latest Shirts</title>
+        <link>http://www.qwertee.com/</link>
+        <description>New Daily Tees from Qwertee.com</description>
+        <atom:link href="http://www.qwertee.com/rss/" rel="self"></atom:link>
+        <language>en-gb</language>
+        <item>
+            <title>The Making of a Heisenberg</title>
+            <link>http://www.qwertee.com/</link>
+            <description>
+                <![CDATA[
+                By TomTrager<br>
+                Every mythological object that stirred Walter White into Heisenberg.<br>
+                <img src="http://www.qwertee.com/images/designs/zoom/30626.jpg" alt=""><br>
+                <img src="http://www.qwertee.com/images/designs/mens/30626.jpg" alt=""><br>
+                ]]>
+                </description>
+            <pubDate>2014-11-26T23:00:00.000Z</pubDate>
+            <guid>http://www.qwertee.com/product/the-making-of-a-heisenberg</guid>
+        </item>
+        <item>
+            <title>InsaniTEE Sale: Random Tees</title>
+            <link>http://www.qwertee.com/</link>
+            <description>
+                <![CDATA[
+                By Qwertee<br>
+                With over 400 potential designs, our biggest ever insaniTEE sale is here.... How does it work? Basically we are selling off some of the remaining shirts we have in some of the designs we have printed so far at the insane price of £6/€7/$8!! Random Hoodies for £12/€15/$15! Missed out on shirt you&#39;d really like to get? Now&#39;s your chance to hopefully get it. Just choose your size and we&#39;ll send you a RANDOM shirt/s.<br>
+                <img src="http://www.qwertee.com/images/designs/zoom/62806.jpg" alt=""><br>
+                <img src="http://www.qwertee.com/images/designs/mens/62806.jpg" alt=""><br>
+                ]]>
+                </description>
+            <pubDate>2014-11-25T23:00:00.000Z</pubDate>
+            <guid>http://www.qwertee.com/product/insanitee-sale-random-tees-532</guid>
+        </item>
+        <item>
+            <title>Dragon trainer</title>
+            <link>http://www.qwertee.com/</link>
+            <description>
+                <![CDATA[
+                By SergioMancinelli<br>
+                Where no one goes!<br>
+                <img src="http://www.qwertee.com/images/designs/zoom/60710.jpg" alt=""><br>
+                <img src="http://www.qwertee.com/images/designs/mens/60710.jpg" alt=""><br>
+                ]]>
+                </description>
+            <pubDate>2014-11-25T23:00:00.000Z</pubDate>
+            <guid>http://www.qwertee.com/product/dragon-trainer-145</guid>
+        </item>
+    </channel>
+</rss>
