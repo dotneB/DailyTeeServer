@@ -1,11 +1,43 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  last_success: 2014-09-09 23:56:36
-  last_failure: 2014-09-09 23:56:36
+    id: 1
+    name: Daily Tee Reminder
+    last_success: 2014-11-17 03:11:20.215291
 
-two:
-  name: MyString
-  last_success: 2014-09-09 23:56:36
-  last_failure: 2014-09-09 23:56:36
+two:    
+    id: 2
+    name: Shirt Woot
+    last_success: 2014-09-18 02:14:26.056046
+
+three:  
+    id: 3
+    name: TeeFury
+    last_success: 2014-11-17 03:11:19.781266
+
+four:   
+    id: 4
+    name: Ript Apparel
+    last_success: 2014-11-17 03:11:19.282238
+
+five:   
+    id: 5
+    name: The YeTee
+    last_success: 2014-11-17 03:11:18.098170
+
+six:    
+    id: 6
+    name: Qwertee
+    last_success: 2014-11-17 03:11:17.707148
+
+seven:  
+    id: 7
+    name: Design By Humans
+    last_success: 2014-09-14 06:19:51.951998
+
+heigh:  
+    id: 8
+    name: Other Tees
+    last_success: 2014-11-17 03:11:17.001107
+
+
