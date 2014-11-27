@@ -2,17 +2,17 @@ require 'net/http'
 require 'open-uri'
 require 'nokogiri'
 
+require 'ShirtWootSite'
+require 'TeeFurySite'
+require 'RiptApparelSite'
+require 'TheYeTeeSite'
+require 'QwerteeSite'
+require 'OtherTeesSite'
+
 class LatestController < ApplicationController
   
   #####
   SITE_ID_DAILYTEESERVER = 1
-  SITE_ID_SHIRTWOOT = 2
-  SITE_ID_TEEFURY = 3
-  SITE_ID_RIPTAPPAREL = 4
-  SITE_ID_THEYETEE = 5
-  SITE_ID_QWERTEE = 6
-  SITE_ID_DESIGNBYHUMANS = 7
-  SITE_ID_OTHERTEES = 8
   #####
 
   # GET /shirts
@@ -91,29 +91,13 @@ class LatestController < ApplicationController
 
   def updateShirtWoot
     logInfo "[=> Shirt Woot ====================================]"
-    
-    shirtwoot_daily_api_url = sprintf("http://api.woot.com/2/events.json?site=shirt.woot.com&eventType=Daily&key=%s", ENV['SHIRTWOOT_API_KEY'] || "")
-    shirtwoot_wootoff_api_url = sprintf("http://api.woot.com/2/events.json?site=shirt.woot.com&eventType=WootOff&key=%s", ENV['SHIRTWOOT_API_KEY'] || "")
     begin
-      networkResponse = Net::HTTP.get_response(URI.parse(shirtwoot_daily_api_url))
-      jsonResult = JSON.parse(networkResponse.body)
-
-      if jsonResult.nil? or jsonResult.first.nil? or jsonResult.first['Offers'].nil?
-        logInfo "Fetching WootOff instead"
-        networkResponse = Net::HTTP.get_response(URI.parse(shirtwoot_wootoff_api_url))
-        jsonResult = JSON.parse(networkResponse.body)
-      end
-
       todaysShirts = Array.new
-      jsonResult.first['Offers'].each do |offer|
-        shirtName = offer['Title']
-        shirtURL = offer['Url']
-        shirtPhotoURL = offer['Photos'].select{|photo| photo['Tags'].include?('gallery')}.take(2).last['Url']
-
-        todaysShirts.push( find_or_create_Shirt(SITE_ID_SHIRTWOOT, shirtName, shirtURL, shirtPhotoURL) )
+      shirts = ShirtWootSite::downloadFeedAndExtractShirts() 
+      shirts.each do |shirt|
+        todaysShirts.push( find_or_create_Shirt(shirt[:siteId], shirt[:shirtName], shirt[:shirtURL], shirt[:shirtPhotoURL]) )
       end
-      
-      record_Success(SITE_ID_SHIRTWOOT, todaysShirts)
+      record_Success(ShirtWootSite::SITE_ID, todaysShirts)
     rescue Exception => e
       logError "Error parsing ShirtWoot API"
       logError e.message
@@ -126,23 +110,13 @@ class LatestController < ApplicationController
 
   def updateTeeFury
     logInfo "[=> TeeFury =======================================]"
-
-    feed_url = "http://www.teefury.com/rss/rss.xml"
     begin
-      feed = Nokogiri::XML(open(feed_url))
-      feed.remove_namespaces!
-
       todaysShirts = Array.new
-      feed.xpath("/feed/entry").each do |entry|
-        shirtName = entry.xpath("title").first.content
-        #shirtURL = entry.xpath("link/@href").first.content
-        shirtURL = "http://www.teefury.com/"
-        shirtPhotoURL = entry.xpath("content").first.content[ /img.*?src="(.*?)"/i,1 ].to_s
-
-        todaysShirts.push( find_or_create_Shirt(SITE_ID_TEEFURY, shirtName, shirtURL, shirtPhotoURL) )
+      shirts = TeeFurySite::downloadFeedAndExtractShirts() 
+      shirts.each do |shirt|
+        todaysShirts.push( find_or_create_Shirt(shirt[:siteId], shirt[:shirtName], shirt[:shirtURL], shirt[:shirtPhotoURL]) )
       end
-      
-      record_Success(SITE_ID_TEEFURY, todaysShirts)
+      record_Success(TeeFurySite::SITE_ID, todaysShirts)
     rescue Exception => e
       logError "Error parsing TeeFury feed"
       logError e.message
@@ -154,24 +128,13 @@ class LatestController < ApplicationController
 
   def updateRiptApparel
     logInfo "[=> Ript Apparel ==================================]"
-
-    feed_url = "http://feeds.feedburner.com/riptapparel"
     begin
-      feed = Nokogiri::XML(open(feed_url))
-      feed.remove_namespaces!
-
       todaysShirts = Array.new
-      feed.xpath("/rss/channel/item").take(3).each do |entry|
-        shirtName = entry.xpath("title").first.content
-        shirtURL = entry.xpath("link").first.content
-        entry_description = Nokogiri::HTML( entry.xpath("description").first.content )
-        entry_description.remove_namespaces!
-        shirtPhotoURL = entry_description.css("img").first["src"]
-        
-        todaysShirts.push( find_or_create_Shirt(SITE_ID_RIPTAPPAREL, shirtName, shirtURL, shirtPhotoURL) )
+      shirts = RiptApparelSite::downloadFeedAndExtractShirts() 
+      shirts.each do |shirt|
+        todaysShirts.push( find_or_create_Shirt(shirt[:siteId], shirt[:shirtName], shirt[:shirtURL], shirt[:shirtPhotoURL]) )
       end
-      
-      record_Success(SITE_ID_RIPTAPPAREL, todaysShirts)
+      record_Success(RiptApparelSite::SITE_ID, todaysShirts)
     rescue Exception => e
       logError "Error parsing Ript Apparel feed"
       logError e.message
@@ -183,30 +146,13 @@ class LatestController < ApplicationController
 
   def updateTheYeTee
     logInfo "[=> TheYeTee ======================================]"
-    feed_url = "http://theyetee.com/feeds/shirts.php"
     begin
-      feed = Nokogiri::XML(open(feed_url))
-      feed.remove_namespaces!
-
       todaysShirts = Array.new
-      pubDate = feed.xpath("/rss/channel/pubDate").first.content
-      feed.xpath("/rss/channel/item").each do |entry|
-        shirtName = entry.xpath("title").first.content
-        shirtName = shirtName.split(" by ").first || shirtName
-        shirtURL = "http://theyetee.com/"
-        #entry_description = Nokogiri::HTML.fragment( entry.xpath("description").first.content )
-        #entry_description.remove_namespaces!
-        #shirtPhotoURL = entry_description.css("img").first["src"]
-        shirtPhotoURL = entry.xpath("description").first.content[ /img.*?src="(.*?)"/i,1 ].to_s
-
-        shirtPubDate = entry.xpath("pubDate").first.content
-
-        if pubDate == shirtPubDate and shirtPhotoURL.include? "/A_"
-          todaysShirts.push( find_or_create_Shirt(SITE_ID_THEYETEE, shirtName, shirtURL, shirtPhotoURL) )
-        end
+      shirts = TheYeTeeSite::downloadFeedAndExtractShirts() 
+      shirts.each do |shirt|
+        todaysShirts.push( find_or_create_Shirt(shirt[:siteId], shirt[:shirtName], shirt[:shirtURL], shirt[:shirtPhotoURL]) )
       end
-      
-      record_Success(SITE_ID_THEYETEE, todaysShirts)
+      record_Success(TheYeTeeSite::SITE_ID, todaysShirts)
     rescue Exception => e
       logError "Error parsing TheYeTee feed"
       logError e.message
@@ -218,28 +164,13 @@ class LatestController < ApplicationController
 
   def updateQwertee
     logInfo "[=> Qwertee =======================================]"
-    feed_url = "http://www.qwertee.com/rss/"
     begin
-      feed = Nokogiri::XML(open(feed_url))
-      feed.remove_namespaces!
-
       todaysShirts = Array.new
-      pubDate = feed.xpath("/rss/channel/item/pubDate").first.content
-      feed.xpath("/rss/channel/item").each do |entry|
-        shirtName = entry.xpath("title").first.content
-        shirtURL = entry.xpath("link").first.content        
-        entry_description = Nokogiri::HTML( entry.xpath("description").first.content )
-        entry_description.remove_namespaces!
-        shirtPhotoURL = entry_description.css("img").first["src"]
-
-        shirtPubDate = entry.xpath("pubDate").first.content
-
-        if pubDate == shirtPubDate
-          todaysShirts.push( find_or_create_Shirt(SITE_ID_QWERTEE, shirtName, shirtURL, shirtPhotoURL) )
-        end
+      shirts = QwerteeSite::downloadFeedAndExtractShirts() 
+      shirts.each do |shirt|
+        todaysShirts.push( find_or_create_Shirt(shirt[:siteId], shirt[:shirtName], shirt[:shirtURL], shirt[:shirtPhotoURL]) )
       end
-      
-      record_Success(SITE_ID_QWERTEE, todaysShirts)
+      record_Success(QwerteeSite::SITE_ID, todaysShirts)
     rescue Exception => e
       logError "Error parsing Qwertee feed"
       logError e.message
@@ -261,28 +192,13 @@ class LatestController < ApplicationController
 
   def updateOtherTees
     logInfo "[=> Other Tees ====================================]"
-    feed_url = "http://www.othertees.com/feed/"
     begin
-      feed = Nokogiri::XML(open(feed_url))
-      feed.remove_namespaces!
-
       todaysShirts = Array.new
-      pubDate = feed.xpath("/rss/channel/item/pubDate").first.content
-      feed.xpath("/rss/channel/item").each do |entry|
-        shirtName = entry.xpath("title").first.content
-        shirtURL = entry.xpath("guid").first.content
-        entry_description = Nokogiri::HTML( entry.xpath("description").first.content )
-        entry_description.remove_namespaces!
-        shirtPhotoURL = entry_description.css("img").first["src"]
-
-        shirtPubDate = entry.xpath("pubDate").first.content
-
-        if pubDate == shirtPubDate
-          todaysShirts.push( find_or_create_Shirt(SITE_ID_OTHERTEES, shirtName, shirtURL, shirtPhotoURL) )
-        end
+      shirts = OtherTeesSite::downloadFeedAndExtractShirts() 
+      shirts.each do |shirt|
+        todaysShirts.push( find_or_create_Shirt(shirt[:siteId], shirt[:shirtName], shirt[:shirtURL], shirt[:shirtPhotoURL]) )
       end
-      
-      record_Success(SITE_ID_OTHERTEES, todaysShirts)
+      record_Success(OtherTeesSite::SITE_ID, todaysShirts)
     rescue Exception => e
       logError "Error parsing OtherTees feed"
       logError e.message
