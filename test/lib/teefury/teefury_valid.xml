@@ -1,0 +1,17 @@
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>TeeFury Daily Tee</title>
+	<subtitle>TeeFury offers one new $11 limited edition Tee for 24 hours. After 24 hours the Tee is GONE FOREVER!</subtitle>
+	<icon>http://www.teefury.com/skin/frontend/teefury/teefury/images/global/tee-bird.png</icon>
+	<updated>2014-11-27T05:10:02+00:00</updated>
+	<id>http://www.teefury.com/rss/rss.xml?1417065002</id>
+	<link href="http://www.teefury.com/rss/rss.xml" rel="self"/>
+	<entry>
+    	<published>2014-11-27T05:10:02+00:00</published>
+    	<title>Pup Culture</title>
+    	<content type="html">"Pup Culture" by: Bamboota&lt;img src=&quot;http://www.teefury.com/media/catalog/product/b/-/b-mco-pup-culture_nvy.jpg&quot; alt=&quot;Pup Culture&quot; /&gt;</content>
+    	<id>http://www.teefury.com/people/profile/view/id/9139?1417065002</id>
+    	<link type="text/html" href="http://www.teefury.com/people/profile/view/id/9139" rel="alternate"/>
+    	<updated>2014-11-27T05:10:02+00:00</updated>
+    	<author><name>cfontan24@gmail.com(Bamboota)</name></author>
+    </entry>    
+</feed>
