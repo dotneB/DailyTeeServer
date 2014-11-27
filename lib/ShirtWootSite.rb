@@ -5,7 +5,7 @@ class ShirtWootSite
   SITE_ID = 2
 
   def self.downloadFeedAndExtractShirts
-    return ShirtWootSite::extractShirts( downloadFeed() )
+    return extractShirts( downloadFeed() )
   end
 
   def self.downloadFeed
@@ -36,6 +36,14 @@ class ShirtWootSite
     end
 
     return nil    
+  end
+
+  def self.loadFeed(filename)
+    return JSON.parse(File.read( filename ))
+  end
+
+  def self.loadFeedAndExtractShirts(filename)
+    return extractShirts( loadFeed(filename) )
   end
 
   def self.extractShirts(json)
