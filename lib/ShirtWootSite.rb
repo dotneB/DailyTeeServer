@@ -13,7 +13,7 @@ class ShirtWootSite
     if json == nil
       return downloadWootOffFeed()
     end
-    return nil
+    return json
   end
 
   def self.downloadDailyFeed
