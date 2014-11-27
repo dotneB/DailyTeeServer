@@ -1,7 +1,7 @@
 require 'nokogiri'
 
 class RiptApparelSite
-  SITE_ID = 3
+  SITE_ID = 4
 
   def self.downloadFeedAndExtractShirts
     return extractShirts( downloadFeed() )
