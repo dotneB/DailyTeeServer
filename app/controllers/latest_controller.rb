@@ -49,7 +49,7 @@ class LatestController < ApplicationController
       
       updateOtherTees()
       updateQwertee()
-      updateTheYeTee()
+      #updateTheYeTee()
       updateRiptApparel()
       updateTeeFury()
       updateShirtWoot()
