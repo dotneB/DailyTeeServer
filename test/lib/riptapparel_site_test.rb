@@ -17,14 +17,14 @@ class RiptApparelSiteTest < ActiveSupport::TestCase
     assert_not_nil(json, "Unable to download ShirtWoot Feed") 
   end
 
-  test "can download and parse live" do
-    shirts = RiptApparelSite::downloadFeedAndExtractShirts() 
-
-    assert_not_equal( shirts.length , 0 )
+#  test "can download and parse live" do
+#    shirts = RiptApparelSite::downloadFeedAndExtractShirts() 
+#
+#    assert_not_equal( shirts.length , 0 )
 #   shirts.each do |shirt|
 #         assert_equal( shirt[:siteId] , ShirtWootSite::SITE_ID )
 #     assert_nothing_raised( URI::InvalidURIError, URI.parse( shirt[:shirtURL] ) ) 
 #     assert_nothing_raised( URI::InvalidURIError, URI.parse( shirt[:shirtPhotoURL] ) )
 #     end
-  end
+#  end
 end
