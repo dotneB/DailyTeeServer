@@ -8,7 +8,7 @@ class OtherTeesSite
   end
 
   def self.downloadFeed
-    feed = Nokogiri::XML(open("http://www.othertees.com/feed/"))
+    feed = Nokogiri::XML(open("https://www.othertees.com/feed/"))
     feed.remove_namespaces!
 
     return feed
