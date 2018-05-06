@@ -51,7 +51,7 @@ class LatestController < ApplicationController
       updateQwertee()
       #updateTheYeTee()
       updateRiptApparel()
-      updateTeeFury()
+      #updateTeeFury()
       updateShirtWoot()
 
       dailyTeeServer.last_success = DateTime.now
